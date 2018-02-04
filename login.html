@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Component</title>
+    <script src="../../js/react.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <script type="text/babel">
+        var BuckysComponent = React.createClass({
+
+            login: function() {
+              var uname= this.refs.uname.value;
+              var pass= this.refs.pass.value;
+//               const response1 =  fetch('http://localhost:9000', {
+//                 method: 'POST',
+//                 headers: {
+//                   'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify({
+//     username: "SDA",
+//     password: "ASFD",
+//   }),
+// });
+var JSONObject= {username:"uname", password:"pass" };
+
+var request = $.ajax({
+url: "http://localhost:9000",
+type: "POST",
+data: JSON.stringify({
+  "username":"DSDSF",
+  "password":"dsaf",
+}),
+dataType: "json"
+});
+            console.log(request);
+
+            },
+            signup: function() {
+              var uname= this.refs.uname.value;
+              var pass= this.refs.pass.value;
+            },
+            render: function() {
+                return (
+                  <div>
+                      Username : <input ref="uname" type="textbox" name="uname"/><br/><br/>
+                      Password :  <input ref="pass" type="password" name="pass"/><br/><br/>
+                      <button onClick={this.login} >Login</button><button onClick={this.signup}>SignUp</button>
+
+                  </div>
+                );
+            }
+        });
+        ReactDOM.render(<BuckysComponent />, document.getElementById('container'));
+    </script>
+
+</body>
+</html>
